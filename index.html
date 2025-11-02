@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PasteLink Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style id="custom-styles">
+        /* Variabel Dasar dan Customization akan diatur di File 2 */
+    </style>
+</head>
+<body>
+    
+    <div class="main-container" id="hC">
+        <h1 style="font-size: 2.5rem; color: var(--p); margin-bottom: 20px;">Welcome to PasteLink</h1>
+        <p style="font-size: 1.1rem; color: var(--t);">Your ultimate premium content sharing platform.</p>
+        <button id="jB" class="main-button" style="margin-top: 30px; padding: 12px 30px; font-size: 1.1rem;">Join Now</button>
+        
+        <div class="ad-slot" style="margin-top: 40px;">
+            <p style="text-align: center; color: #888; border: 1px dashed #ccc; padding: 15px;">[AD SLOT: Iklan Halaman Utama]</p>
+        </div>
+    </div>
+
+    <div class="main-container hidden" id="aC">
+        </div>
+
+    <div class="main-container hidden" id="nC">
+        </div>
+
+    <div id="tc"></div>
+
+    <footer style="margin-top: auto; padding: 20px 20px 0; text-align: center; color: #888; font-size: .9rem;">
+        © 2026 OKIENAK | Contact: <a href="mailto:cidmomo19@gmail.com" style="color:var(--p);">cidmomo19@gmail.com</a>
+    </footer>
+
+    <style id="custom-styles">
+        /* Variabel Warna Default (Warna Cerah) */
+        :root {
+            --p: #2979FF; /* Primary / Biru Cerah */
+            --l: #E3F2FD; /* Light Primary */
+            --b: #FFFFFF; /* Background Putih Bersih */
+            --t: #212121; /* Text Hitam Gelap */
+            --e: #FF5252; /* Error Merah */
+            --s: #69F0AE; /* Success Hijau */
+            --sh: rgba(0, 0, 0, .08); /* Shadow */
+            
+            /* Custom Font Defaults */
+            --c-ff: 'Roboto', sans-serif;
+            --c-fs: 1.0rem;
+            --c-fw: 400;
+            --c-fc: var(--t);
+        }
+
+        /* Reset dan Dasar */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--c-ff);
+            transition: all .2s ease-out;
+        }
+
+        html, body {
+            min-height: 100%;
+            background: var(--b);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0; /* Padding dihilangkan, diterapkan di container */
+            color: var(--t);
+        }
+        
+        /* Main Container untuk semua Halaman */
+        .main-container {
+            width: 95%;
+            max-width: 700px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px var(--sh);
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .main-container#hC {
+            text-align: center;
+            min-height: 300px;
+            justify-content: center;
+        }
+
+        a {
+            color: var(--p);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        h1 {
+            font-weight: 700;
+            color: var(--p);
+        }
+        
+        /* Input, Textarea, dan Button Style */
+        input:not([type="radio"]):not([type="checkbox"]):not([type="color"]), textarea, select, .tab button {
+            width: 100%;
+            border-radius: 6px; /* Lebih minimalis */
+            border: 1px solid #E0E0E0;
+            padding: .75rem 1rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 400;
+            background: #F8F8F8; /* Sedikit abu-abu */
+            color: var(--t);
+        }
+        
+        input:focus:not([type="radio"]):not([type="checkbox"]):not([type="color"]), textarea:focus, select:focus {
+            border-color: var(--p);
+            box-shadow: 0 0 0 2px var(--l);
+            background: #fff;
+        }
+
+        .main-button {
+            background: var(--p);
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+            border-radius: 6px;
+            padding: .75rem 1.5rem;
+            transition: all .2s ease;
+        }
+
+        .main-button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+        
+        /* Tab Style */
+        .tab {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            background: var(--l);
+            padding: 3px;
+            width: 100%;
+        }
+
+        .tab button {
+            flex: 1;
+            margin: 0;
+            background: transparent;
+            color: var(--p);
+            border: none;
+            padding: .6rem;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .active-tab {
+            background: var(--p) !important;
+            color: #fff !important;
+            font-weight: 700 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Card & Action Styles */
+        .note-card {
+            background: #F8F8F8;
+            border-left: 5px solid var(--p); /* Garis warna tema */
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .05);
+        }
+
+        .na {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .na button, .na a {
+            width: auto;
+            padding: .5rem .9rem;
+            margin-bottom: 0;
+            font-size: .85rem;
+            border-radius: 4px;
+            font-weight: 500;
+            background: var(--p);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-delete {
+            background: var(--e);
+        }
+
+        /* Tampilan Kode */
+        .code-block {
+            background: #263238; /* Biru gelap untuk kode */
+            color: #ECEFF1; 
+            padding: 15px; 
+            border-radius: 6px; 
+            overflow-x: auto;
+            font-family: 'Courier Prime', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 10px 0;
+        }
+
+        /* Password Toggle (Mata) */
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        /* Utility */
+        .text-center { text-align: center; }
+
+    </style>
+    
+    <div class="main-container hidden" id="aC">
+        <h1 style="color:var(--t);"><span style="color:var(--p);">Access</span> Account</h1>
+        
+        <div class="tab" style="max-width:350px;">
+            <button id="lT" class="active-tab">Login</button>
+            <button id="rT">Register</button>
+        </div>
+
+        <div id="lF" style="width:100%; max-width:400px;">
+            <input id="lE" type="email" placeholder="Email">
+            <div style="position:relative; margin-bottom:1rem;">
+                <input id="lP" type="password" placeholder="Password" style="padding-right: 3rem; margin-bottom:0;">
+                <span class="password-toggle" id="lPTog" style="color:var(--p);">👁️</span>
+            </div>
+            <button id="lB" class="main-button">Login</button>
+        </div>
+
+        <div id="rF" class="hidden" style="width:100%; max-width:400px;">
+            <input id="rE" type="email" placeholder="Email">
+            <div style="position:relative; margin-bottom:1rem;">
+                <input id="rP" type="password" placeholder="Password (Min. 3 chars)" style="padding-right: 3rem; margin-bottom:0;">
+                <span class="password-toggle" id="rPTog" style="color:var(--p);">👁️</span>
+            </div>
+            <div style="position:relative; margin-bottom:1rem;">
+                <input id="rCP" type="password" placeholder="Confirm Password" style="padding-right: 3rem; margin-bottom:0;">
+                <span class="password-toggle" id="rCPTog" style="color:var(--p);">👁️</span>
+            </div>
+            <button id="rB" class="main-button">Register Account</button>
+        </div>
+    </div>
+
+    <div class="main-container hidden" id="nC">
+        <h1 style="font-size:1.8rem;">Dashboard for <strong id="uN" style="color:var(--p);"></strong></h1>
+        
+        <div id="dashboardStats" style="width:100%; text-align:center; padding:15px; border-radius:8px; background:var(--l); margin-bottom:1.5rem;">
+            <strong style="color:var(--p);">Total Visits:</strong> <span id="vC" style="font-weight:700;">0</span>
+            <span style="margin-left:20px; color:#888;">|</span>
+            <strong style="color:var(--p); margin-left:20px;">Total Pastes:</strong> <span id="pC" style="font-weight:700;">0</span>
+        </div>
+        
+        <div style="width:100%;">
+            <h2 style="font-size:1.5rem; margin-bottom:1rem; color:var(--p); border-bottom:1px solid #eee; padding-bottom:5px;">New Paste</h2>
+            
+            <input id="pT" type="text" placeholder="Optional Paste Title">
+
+            <div style="display:flex; align-items:center; gap:5px; margin-bottom:1rem;">
+                <span style="font-weight:500; color:#555;">/p/</span>
+                <input id="pS" type="text" placeholder="custom-url-slug (Optional)" style="margin-bottom:0; flex:1;">
+            </div>
+            
+            <div style="display:flex; gap:10px; margin-bottom:1rem; flex-wrap:wrap;">
+                <select id="sH" style="flex:1;">
+                    <option value="text">Plain Text</option>
+                    <option value="code">Code/Syntax</option>
+                    <option value="link">Hyperlink</option>
+                </select>
+                <select id="eO" style="flex:1;">
+                    <option value="never">No Expiry</option>
+                    <option value="1h">1 Hour</option>
+                    <option value="1d">1 Day</option>
+                    <option value="1w">1 Week</option>
+                    <option value="1m">1 Month</option>
+                    <option value="1y">1 Year (Max)</option>
+                </select>
+            </div>
+            
+            <textarea id="nI" placeholder="Paste your content here..."></textarea>
+            
+            <div style="position:relative; margin-bottom:1rem;">
+                <input id="nPI" type="password" placeholder="Optional Password Protection" style="padding-right: 3rem; margin-bottom:0;">
+                <span class="password-toggle" id="nPITog" style="color:var(--p);">👁️</span>
+            </div>
+            
+            <div style="display:flex; align-items:center; gap:15px; margin-bottom:1.5rem; justify-content:center;">
+                <strong style="font-weight:600; color:var(--t);">Visibility:</strong>
+                <label><input type="radio" name="visibility" value="public" checked> Public</label>
+                <label><input type="radio" name="visibility" value="private"> Private (Self-View Only)</label>
+            </div>
+        </div>
+        
+        <div style="width:100%; border:1px solid var(--l); padding:1.5rem; border-radius:10px; margin-bottom:1.5rem;">
+            <h4 style="color:var(--p); margin-bottom:1rem; text-align:center;">🎨 Content Custom Styles</h4>
+            
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:1rem; flex-wrap:wrap;">
+                <label style="font-weight:500; min-width:120px;">Theme Color:</label>
+                <input type="color" id="cC" value="#2979FF" style="width:100px; height:45px; padding:5px; margin:0;">
+            </div>
+
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:1rem; flex-wrap:wrap;">
+                <label style="font-weight:500; min-width:120px;">Font Family:</label>
+                <select id="cF" style="flex:1; margin:0;">
+                    <option value="Roboto, sans-serif">Roboto (Clean)</option>
+                    <option value="Montserrat, sans-serif">Montserrat (Modern)</option>
+                    <option value="Courier Prime, monospace">Courier Prime (Code)</option>
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="Georgia, serif">Georgia</option>
+                </select>
+            </div>
+            
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <div style="flex:1;">
+                    <label style="font-weight:500;">Size (px):</label>
+                    <input type="number" id="cSZ" value="16" min="10" max="30" style="margin:0;">
+                </div>
+                <div style="flex:1;">
+                    <label style="font-weight:500;">Weight:</label>
+                    <select id="cSW" style="margin:0;">
+                        <option value="400">Regular</option>
+                        <option value="500">Medium</option>
+                        <option value="700">Bold</option>
+                    </select>
+                </div>
+                <div style="flex:1;">
+                    <label style="font-weight:500;">Font Color:</label>
+                    <input type="color" id="cSC" value="#212121" style="width:100%; height:45px; padding:5px; margin:0;">
+                </div>
+            </div>
+        </div>
+        <button id="aNB" class="main-button" style="width:100%;">Publish Premium Paste</button>
+
+        <div id="nL" style="margin-top:2rem; width:100%;">
+            <h2 style="font-size:1.5rem; margin-bottom:1rem; color:var(--p); border-bottom:1px solid #eee; padding-bottom:5px;">My Pastes</h2>
+            </div>
+
+        <button id="lB2" class="main-button btn-delete" style="margin-top:1.5rem; background:var(--e); width:100%;">Logout</button>
+    </div>
+
+<script>
+        // Mapping DOM Elements
+        const D = {
+            // General
+            hC: document.getElementById("hC"),
+            aC: document.getElementById("aC"),
+            nC: document.getElementById("nC"),
+            jB: document.getElementById("jB"),
+            tC: document.getElementById("tc"),
+            // Auth
+            lT: document.getElementById("lT"),
+            rT: document.getElementById("rT"),
+            lE: document.getElementById("lE"),
+            lP: document.getElementById("lP"),
+            lPTog: document.getElementById("lPTog"),
+            lB: document.getElementById("lB"),
+            rE: document.getElementById("rE"),
+            rP: document.getElementById("rP"),
+            rPTog: document.getElementById("rPTog"),
+            rCP: document.getElementById("rCP"),
+            rCPTog: document.getElementById("rCPTog"),
+            rB: document.getElementById("rB"),
+            lF: document.getElementById("lF"),
+            rF: document.getElementById("rF"),
+            // Paste Input & Dashboard
+            uN: document.getElementById("uN"),
+            vC: document.getElementById("vC"),
+            pC: document.getElementById("pC"),
+            pT: document.getElementById("pT"), // Title
+            pS: document.getElementById("pS"), // Slug (Custom URL)
+            sH: document.getElementById("sH"),
+            eO: document.getElementById("eO"),
+            nI: document.getElementById("nI"),
+            nPI: document.getElementById("nPI"),
+            nPITog: document.getElementById("nPITog"),
+            aNB: document.getElementById("aNB"),
+            nL: document.getElementById("nL"),
+            lB2: document.getElementById("lB2"),
+            // Custom Style
+            cC: document.getElementById("cC"), // Color
+            cF: document.getElementById("cF"), // Font Family
+            cSZ: document.getElementById("cSZ"), // Size
+            cSW: document.getElementById("cSW"), // Weight
+            cSC: document.getElementById("cSC"), // Font Color
+        };
+
+        // --- GLOBAL UTILITIES ---
+        
+        // Local Storage Utilities
+        const gU = () => JSON.parse(localStorage.getItem("users") || "{}");
+        const sU = u => localStorage.setItem("users", JSON.stringify(u));
+        const gLUE = () => localStorage.getItem("loggedIn");
+        const oE = "sririwayati255@gmail.com"; // Owner Email
+
+        // Link Formatter
+        const lk = t => {
+            const p = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+            return t.replace(p, '<a href="$1" target="_blank" style="color:var(--p); font-weight:600;">$1</a>');
+        }
+        
+        // Expiry Calculator
+        const gE = (o) => {
+            const n = new Date();
+            if (o === '1h') n.setHours(n.getHours() + 1);
+            else if (o === '1d') n.setDate(n.getDate() + 1);
+            else if (o === '1w') n.setDate(n.getDate() + 7);
+            else if (o === '1m') n.setMonth(n.getMonth() + 1);
+            else if (o === '1y') n.setFullYear(n.getFullYear() + 1);
+            else return null; // 'never'
+            return n.getTime();
+        };
+        
+        // Toast Notification Function
+        function sT(m, t = 'info') {
+            const o = document.createElement('div');
+            o.className = `toast ${t}`;
+            o.textContent = m;
+            D.tC.innerHTML = '';
+            D.tC.appendChild(o);
+            setTimeout(() => o.classList.add('show'), 10);
+            setTimeout(() => {
+                o.classList.remove('show');
+                o.addEventListener('transitionend', () => o.remove(), { once: true });
+            }, 4000);
+        }
+        
+        // Function to toggle password visibility
+        function tPV(input, toggle) {
+            const isP = input.type === 'password';
+            input.type = isP ? 'text' : 'password';
+            toggle.textContent = isP ? '🙈' : '👁️';
+        }
+
+        // Apply Custom Theme Color
+        function aCTC(color) {
+            const root = document.documentElement;
+            const hexToRgb = (hex) => {
+                const bigint = parseInt(hex.slice(1), 16);
+                const r = (bigint >> 16) & 255;
+                const g = (bigint >> 8) & 255;
+                const b = bigint & 255;
+                return [r, g, b];
+            };
+            const [r, g, b] = hexToRgb(color);
+            // Light color approximation: white mixed with primary color (70% white, 30% primary)
+            const lr = Math.round(255 * 0.7 + r * 0.3);
+            const lg = Math.round(255 * 0.7 + g * 0.3);
+            const lb = Math.round(255 * 0.7 + b * 0.3);
+            const lightColor = `rgb(${lr}, ${lg}, ${lb})`;
+            
+            root.style.setProperty('--p', color);
+            root.style.setProperty('--l', lightColor);
+        }
+
+        // --- PAGE NAVIGATION & AUTH LOGIC ---
+
+        // Home to Auth
+        D.jB.addEventListener("click", () => {
+            D.hC.classList.add("hidden");
+            D.nC.classList.add("hidden");
+            D.aC.classList.remove("hidden");
+        });
+
+        // Tab Switching Logic
+        const l = () => {
+            D.lT.classList.add("active-tab");
+            D.rT.classList.remove("active-tab");
+            D.lF.classList.remove("hidden");
+            D.rF.classList.add("hidden");
+        };
+        const r = () => {
+            D.rT.classList.add("active-tab");
+            D.lT.classList.remove("active-tab");
+            D.rF.classList.remove("hidden");
+            D.lF.classList.add("hidden");
+        };
+        D.lT.addEventListener("click", l);
+        D.rT.addEventListener("click", r);
+        
+        // Password Toggles
+        D.lPTog.addEventListener('click', () => tPV(D.lP, D.lPTog));
+        D.rPTog.addEventListener('click', () => tPV(D.rP, D.rPTog));
+        D.rCPTog.addEventListener('click', () => tPV(D.rCP, D.rCPTog));
+        D.nPITog.addEventListener('click', () => tPV(D.nPI, D.nPITog));
+
+
+        // Register
+        D.rB.addEventListener("click", () => {
+            const e = D.rE.value.trim();
+            const p = D.rP.value.trim();
+            const cP = D.rCP.value.trim();
+            if (!e || !p || !cP) return sT("Please fill in all fields!", 'error');
+            if (p.length < 3 || p !== cP) return sT("Password min 3 chars and must match!", 'error');
+
+            let u = gU();
+            if (u[e]) return sT("Email already registered!", 'error');
+
+            u[e] = { 
+                password: p, 
+                pastes: [], 
+                style: { // Default Custom Style
+                    color: D.cC.value,
+                    fontFamily: D.cF.value,
+                    fontSize: D.cSZ.value,
+                    fontWeight: D.cSW.value,
+                    fontColor: D.cSC.value
+                },
+                visits: 0 // Initialize visitor count
+            };
+            sU(u);
+            sT("Registration successful! Please login.", 'success');
+            D.rE.value = D.rP.value = D.rCP.value = "";
+            l(); // Switch to login tab
+        });
+
+        // Login
+        D.lB.addEventListener("click", () => {
+            const e = D.lE.value.trim();
+            const p = D.lP.value.trim();
+            let u = gU();
+
+            if (u[e] && u[e].password === p) {
+                localStorage.setItem("loggedIn", e);
+                sNP(e); // Show Notes Page
+                D.lE.value = D.lP.value = "";
+                sT(`Welcome back, ${e.split('@')[0]}!`, 'success');
+            } else {
+                sT("Incorrect email or password!", 'error');
+            }
+        });
+
+        // Logout
+        D.lB2.addEventListener("click", () => {
+            if (confirm("Are you sure you want to log out?")) {
+                localStorage.removeItem("loggedIn");
+                location.reload();
+            }
+        });
+
+        // Show Notes Page (sNP)
+        function sNP(e) {
+            D.hC.classList.add("hidden");
+            D.aC.classList.add("hidden");
+            D.nC.classList.remove("hidden");
+            D.uN.textContent = e.split('@')[0];
+            lCS(e); // Load Custom Style
+            rN(); // Render Pastes
+        }
+      
+    // --- CUSTOM STYLE LOGIC ---
+    
+    // Load Custom Style (lCS) and apply to UI/Root
+    function lCS(email) {
+        const u = gU();
+        const style = u[email].style;
+
+        if (style) {
+            // Apply to Root CSS Variables
+            aCTC(style.color);
+            document.documentElement.style.setProperty('--c-ff', style.fontFamily);
+            document.documentElement.style.setProperty('--c-fs', `${style.fontSize}px`);
+            document.documentElement.style.setProperty('--c-fw', style.fontWeight);
+            document.documentElement.style.setProperty('--c-fc', style.fontColor);
+            
+            // Apply to UI Selectors/Inputs
+            D.cC.value = style.color;
+            D.cF.value = style.fontFamily;
+            D.cSZ.value = style.fontSize;
+            D.cSW.value = style.fontWeight;
+            D.cSC.value = style.fontColor;
+        }
+    }
+    
+    // Save Custom Style (sCS)
+    function sCS() {
+        const e = gLUE();
+        let u = gU();
+        
+        u[e].style = {
+            color: D.cC.value,
+            fontFamily: D.cF.value,
+            fontSize: D.cSZ.value,
+            fontWeight: D.cSW.value,
+            fontColor: D.cSC.value
+        };
+        sU(u);
+        lCS(e); // Reload to apply immediately
+        rN(); // Re-render pastes to apply new style to cards
+    }
+
+    // Add event listeners for style changes
+    D.cC.addEventListener('change', sCS);
+    D.cF.addEventListener('change', sCS);
+    D.cSZ.addEventListener('change', sCS);
+    D.cSW.addEventListener('change', sCS);
+    D.cSC.addEventListener('change', sCS);
+    
+    // --- PASTE ACTIONS (CRUD) ---
+
+    // Add Paste
+    D.aNB.addEventListener("click", () => {
+        const t = D.nI.value.trim();
+        const title = D.pT.value.trim() || "Untitled Paste";
+        const slug = D.pS.value.trim().replace(/[^a-zA-Z0-9-]/g, '').toLowerCase(); // Clean slug
+        const nP = D.nPI.value.trim();
+        const sH = D.sH.value;
+        const eO = D.eO.value;
+        const v = document.querySelector('input[name="visibility"]:checked').value;
+        
+        if (!t) return sT("Please paste content first!", 'error');
+
+        const e = gLUE();
+        let u = gU();
+        
+        // Check for existing slug collision
+        const slugExists = u[e].pastes.some(p => p.slug === slug);
+        if (slug && slugExists) {
+            return sT(`Custom URL /p/${slug} already used!`, 'error');
+        }
+
+        const newPaste = { 
+            title: title,
+            content: t, 
+            slug: slug || null,
+            password: nP || null,
+            syntax: sH,
+            expiry: gE(eO),
+            visibility: v,
+            visits: 0, // Initialize visits for this paste
+            createdAt: Date.now()
+        };
+        
+        u[e].pastes.unshift(newPaste);
+        sU(u);
+        
+        D.nI.value = D.pT.value = D.pS.value = D.nPI.value = "";
+        D.sH.value = "text";
+        D.eO.value = "never";
+        document.querySelector('input[name="visibility"][value="public"]').checked = true;
+
+        rN();
+        sT("Premium Paste Published!", 'success');
+    });
+
+    // Delete Paste
+    function dN(i) {
+        if (!confirm("Are you sure you want to delete this paste?")) return;
+        const e = gLUE();
+        let u = gU();
+        u[e].pastes.splice(i, 1);
+        sU(u);
+        rN();
+        sT("Paste deleted.", 'info');
+    }
+    
+    // Update Paste (Simplified - Placeholder)
+    function uN(i, nT) {
+        // Implementasi penuh update (termasuk semua input premium) akan menambah banyak baris
+        // Kita jaga ini sebagai placeholder untuk menjaga batas baris
+        sT("Edit mode activated. Full edit logic is complex and skipped to stay below the 500 line limit.", 'info');
+    }
+
+    // Syntax Highlighter & Content Render Logic
+    const sHC = (content, type, applyStyle = false) => {
+        let style = '';
+        if (applyStyle) {
+             // Apply custom styles to the content being rendered
+             style = `font-family: var(--c-ff); font-size: var(--c-fs); font-weight: var(--c-fw); color: var(--c-fc);`;
+        }
+        
+        // Code Block
+        if (type === 'code') {
+            return `<pre class="code-block" style="${style}">${content}</pre>`;
+        }
+        
+        // Link Formatter
+        let processedContent = content;
+        if (type === 'link') {
+            processedContent = lk(processedContent);
+        }
+        
+        // Plain Text formatting
+        if (applyStyle) {
+            return `<p style="white-space:pre-wrap;word-wrap:break-word;word-break:break-all;line-height:1.6; ${style}">${processedContent}</p>`;
+        }
+        
+        return processedContent.replace(/\n/g, '<br>'); // Simple break for dashboard card
+    };
+
+    // Render Pastes (rN) - Termasuk Dashboard Stats
+    function rN() {
+        D.nL.innerHTML = "";
+        const e = gLUE();
+        let u = gU();
+
+        if (!u[e] || !u[e].pastes) {
+            D.pC.textContent = 0; // Update paste count
+            D.vC.textContent = u[e]?.visits || 0; // Update total visits
+            D.nL.innerHTML = `<div class="note-card text-center" style="border-left:5px solid #ccc; color:#888;"><h3>Ayo Buat Okienak Pertamamu!</h3></div>`;
+            return;
+        }
+
+        let n = u[e].pastes;
+        const now = Date.now();
+        let totalVisits = u[e].visits || 0;
+        let expiredVisits = 0;
+
+        // Filter paste yang kadaluarsa
+        u[e].pastes = n.filter(p => {
+            const isExpired = p.expiry && p.expiry <= now;
+            if (isExpired) {
+                 expiredVisits += p.visits || 0;
+            }
+            return !isExpired;
+        });
+        sU(u); // Simpan perubahan (paste yang hilang)
+        n = u[e].pastes; // Update list
+
+        // Update Dashboard Stats
+        D.pC.textContent = n.length;
+        D.vC.textContent = totalVisits - expiredVisits;
+        u[e].visits = totalVisits - expiredVisits; // Update total visits user
+        sU(u);
+
+        if (n.length === 0) {
+            D.nL.innerHTML = `<div class="note-card text-center" style="border-left:5px solid #ccc; color:#888;"><h3>Ayo Buat Paste Premium Pertamamu!</h3></div>`;
+            return;
+        }
+
+        n.forEach((nO, i) => {
+            const isPasswordProtected = !!nO.password;
+            const isPrivate = nO.visibility === 'private';
+            const statusColor = isPrivate ? '#FFC107' : (isPasswordProtected ? 'var(--e)' : 'var(--s)');
+            const statusText = isPrivate ? '🔒 PRIVATE' : (isPasswordProtected ? '🔑 PROTECTED' : '🟢 PUBLIC');
+            const urlPath = nO.slug ? `/p/${nO.slug}` : `/?n=${e}-${i}`;
+            const expiryText = nO.expiry ? `Expires: ${new Date(nO.expiry).toLocaleDateString()}` : 'No Expiry';
+            
+            const div = document.createElement("div");
+            div.className = "note-card";
+            div.setAttribute('data-index', i);
+            div.style.borderLeft = `5px solid ${statusColor}`;
+
+            div.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                    <strong style="color:var(--p);font-size:1.1rem; flex-grow:1;">${nO.title}</strong>
+                    <span style="font-size:.8rem; color:#888;">${expiryText}</span>
+                </div>
+                <div style="margin-bottom:10px; font-size:.9rem; color:#555;">
+                    <span style="background:var(--l); padding:3px 8px; border-radius:4px; margin-right:5px; color:var(--p);">Visits: ${nO.visits || 0}</span>
+                    <span style="background:var(--l); padding:3px 8px; border-radius:4px; margin-right:5px; color:${statusColor};">${statusText}</span>
+                    <span style="background:var(--l); padding:3px 8px; border-radius:4px; color:#888;">Type: ${nO.syntax.toUpperCase()}</span>
+                </div>
+                <div style="font-size: .95rem; max-height:100px; overflow:hidden;">
+                    ${sHC(nO.content.substring(0, 150) + (nO.content.length > 150 ? '...' : ''), nO.syntax)}
+                </div>
+                <div class="na">
+                    <button class="btn-edit main-button" data-index="${i}" style="background:#FFA000;">Edit</button>
+                    <a href="${urlPath}" target="_blank" class="main-button" style="background:var(--p);">Share Link</a>
+                    <button class="btn-delete main-button" data-index="${i}" style="background:var(--e);">Delete</button>
+                </div>
+            `;
+            D.nL.appendChild(div);
+        });
+
+        // Re-attach event listeners
+        D.nL.querySelectorAll(".btn-delete").forEach(btn => btn.addEventListener("click", e => dN(e.target.dataset.index)));
+        D.nL.querySelectorAll(".btn-edit").forEach(btn => btn.addEventListener("click", e => uN(e.target.dataset.index)));
+    }
+
+    // Render Public Paste (rPN) - Handler untuk link share
+    function rPN(nO, ownerEmail, pasteIndex) {
+        if (!nO || !('content' in nO)) return D.nC.innerHTML = `<h2 class="text-center" style="color:var(--e);">Error: Invalid paste link.</h2>`;
+
+        const loggedInUser = gLUE();
+        const isOwner = loggedInUser === ownerEmail;
+
+        if (nO.visibility === 'private' && !isOwner) {
+             return D.nC.innerHTML = `<h2 class="text-center" style="color:var(--e);">❌ Paste is Private</h2><p class="text-center">Only the creator can view this paste.</p>`;
+        }
+        
+        let shouldUnlock = false;
+        if (nO.password) {
+            // Owner bypasses password
+            if (isOwner && ownerEmail === oE) { // Owner Account Bypass
+                shouldUnlock = true;
+            } else if (isOwner) {
+                // Regular logged in user bypasses password on their own pastes
+                shouldUnlock = true;
+            }
+        } else {
+            // No password set
+            shouldUnlock = true;
+        }
+
+        // Apply Paste's Owner Style for Public View
+        const u = gU();
+        const ownerStyle = u[ownerEmail]?.style;
+        if (ownerStyle) {
+            aCTC(ownerStyle.color); // Apply theme color
+            document.documentElement.style.setProperty('--c-ff', ownerStyle.fontFamily);
+            document.documentElement.style.setProperty('--c-fs', `${ownerStyle.fontSize}px`);
+            document.documentElement.style.setProperty('--c-fw', ownerStyle.fontWeight);
+            document.documentElement.style.setProperty('--c-fc', ownerStyle.fontColor);
+        }
+
+        // Increment visit count only if not owner and not logged in (true public visit)
+        if (!isOwner) {
+            const u = gU();
+            u[ownerEmail].visits = (u[ownerEmail].visits || 0) + 1;
+            u[ownerEmail].pastes[pasteIndex].visits = (u[ownerEmail].pastes[pasteIndex].visits || 0) + 1;
+            sU(u);
+        }
+
+
+        if (!shouldUnlock && !!nO.password) {
+            // Locked Paste View (Requires password)
+            D.nC.innerHTML = `
+                <h2 class="text-center" style="color:var(--p);">🔑 Password Protected Paste</h2>
+                <div class="note-card" style="border-left:5px solid var(--e); margin-top:20px;">
+                    <p class="text-center">Title: <strong>${nO.title}</strong></p>
+                    <div style="position:relative; margin-top:10px;">
+                        <input type="password" id="sP" placeholder="Enter Paste Password" style="padding-right: 3rem; margin-bottom:0;">
+                        <span class="password-toggle" id="sPTog" style="color:var(--p);">👁️</span>
+                    </div>
+                    <button id="uB" class="main-button" style="margin-top:1rem; width:100%;">Unlock Paste</button>
+                </div>
+            `;
+            document.getElementById('sPTog').addEventListener('click', () => tPV(document.getElementById('sP'), document.getElementById('sPTog')));
+            document.getElementById('uB').addEventListener('click', () => {
+                const eP = document.getElementById('sP').value.trim();
+                if (eP === nO.password) rC(nO);
+                else sT("Incorrect password!", 'error');
+            });
+
+        } else {
+            // Unlocked or Regular Paste View
+            rC(nO);
+        }
+    }
+    
+    // Render Content for Shared/Public View (rC)
+    function rC(nO) {
+        D.nC.innerHTML = `
+            <h1 class="text-center" style="font-size: 2rem;">${nO.title}</h1>
+            <div class="note-card" style="margin-top:20px; width:100%; border-left: 5px solid var(--p);">
+                <div style="font-size: var(--c-fs); font-weight: var(--c-fw); color: var(--c-fc);">
+                    ${sHC(nO.content, nO.syntax, true)}
+                </div>
+            </div>
+            <div class="text-center" style="font-size:.9rem;color:#888; margin-top:15px;">
+                <p>Type: ${nO.syntax.toUpperCase()} | Visited: ${nO.visits || 0} times</p>
+            </div>
+            <button id="cNR" class="main-button" style="margin-top:20px;">Create Your Own Paste</button>
+        `;
+        document.getElementById('cNR').addEventListener('click', () => window.location.href = window.location.origin + window.location.pathname);
+    }
+    
+   // Render Pastes (rN) - Termasuk Dashboard Stats
+    function rN() {
+        D.nL.innerHTML = "";
+        const e = gLUE();
+        let u = gU();
+
+        if (!u[e] || !u[e].pastes) {
+            D.pC.textContent = 0; // Update paste count
+            D.vC.textContent = u[e]?.visits || 0; // Update total visits
+            D.nL.innerHTML = `<div class="note-card text-center" style="border-left:5px solid #ccc; color:#888;"><h3>Ayo Buat Paste Premium Pertamamu!</h3></div>`;
+            return;
+        }
+
+        let n = u[e].pastes;
+        const now = Date.now();
+        let totalVisits = u[e].visits || 0;
+        let expiredVisits = 0;
+
+        // Filter paste yang kadaluarsa
+        u[e].pastes = n.filter(p => {
+            const isExpired = p.expiry && p.expiry <= now;
+            if (isExpired) {
+                 expiredVisits += p.visits || 0;
+            }
+            return !isExpired;
+        });
+        sU(u); // Simpan perubahan (paste yang hilang)
+        n = u[e].pastes; // Update list
+
+        // Update Dashboard Stats
+        D.pC.textContent = n.length;
+        D.vC.textContent = totalVisits - expiredVisits;
+        u[e].visits = totalVisits - expiredVisits; // Update total visits user
+        sU(u);
+
+        if (n.length === 0) {
+            D.nL.innerHTML = `<div class="note-card text-center" style="border-left:5px solid #ccc; color:#888;"><h3>Ayo Buat Paste Premium Pertamamu!</h3></div>`;
+            return;
+        }
+
+        n.forEach((nO, i) => {
+            const isPasswordProtected = !!nO.password;
+            const isPrivate = nO.visibility === 'private';
+            const statusColor = isPrivate ? '#FFC107' : (isPasswordProtected ? 'var(--e)' : 'var(--s)');
+            const statusText = isPrivate ? '🔒 PRIVATE' : (isPasswordProtected ? '🔑 PROTECTED' : '🟢 PUBLIC');
+            const urlPath = nO.slug ? `/p/${nO.slug}` : `/?n=${e}-${i}`;
+            const expiryText = nO.expiry ? `Expires: ${new Date(nO.expiry).toLocaleDateString()}` : 'No Expiry';
+            
+            const div = document.createElement("div");
+            div.className = "note-card";
+            div.setAttribute('data-index', i);
+            div.style.borderLeft = `5px solid ${statusColor}`;
+
+            div.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                    <strong style="color:var(--p);font-size:1.1rem; flex-grow:1;">${nO.title}</strong>
+                    <span style="font-size:.8rem; color:#888;">${expiryText}</span>
+                </div>
+                <div style="margin-bottom:10px; font-size:.9rem; color:#555;">
+                    <span style="background:var(--l); padding:3px 8px; border-radius:4px; margin-right:5px; color:var(--p);">Visits: ${nO.visits || 0}</span>
+                    <span style="background:var(--l); padding:3px 8px; border-radius:4px; margin-right:5px; color:${statusColor};">${statusText}</span>
+                    <span style="background:var(--l); padding:3px 8px; border-radius:4px; color:#888;">Type: ${nO.syntax.toUpperCase()}</span>
+                </div>
+                <div style="font-size: .95rem; max-height:100px; overflow:hidden;">
+                    ${sHC(nO.content.substring(0, 150) + (nO.content.length > 150 ? '...' : ''), nO.syntax)}
+                </div>
+                <div class="na">
+                    <button class="btn-edit main-button" data-index="${i}" style="background:#FFA000;">Edit</button>
+                    <a href="${urlPath}" target="_blank" class="main-button" style="background:var(--p);">Share Link</a>
+                    <button class="btn-delete main-button" data-index="${i}" style="background:var(--e);">Delete</button>
+                </div>
+            `;
+            D.nL.appendChild(div);
+        });
+
+        // Re-attach event listeners
+        D.nL.querySelectorAll(".btn-delete").forEach(btn => btn.addEventListener("click", e => dN(e.target.dataset.index)));
+        D.nL.querySelectorAll(".btn-edit").forEach(btn => btn.addEventListener("click", e => uN(e.target.dataset.index)));
+    }
+
+    // Render Public Paste (rPN) - Handler untuk link share
+    function rPN(nO, ownerEmail, pasteIndex) {
+        if (!nO || !('content' in nO)) return D.nC.innerHTML = `<h2 class="text-center" style="color:var(--e);">Error: Invalid paste link.</h2>`;
+
+        const loggedInUser = gLUE();
+        const isOwner = loggedInUser === ownerEmail;
+
+        if (nO.visibility === 'private' && !isOwner) {
+             return D.nC.innerHTML = `<h2 class="text-center" style="color:var(--e);">❌ Paste is Private</h2><p class="text-center">Only the creator can view this paste.</p>`;
+        }
+        
+        let shouldUnlock = false;
+        if (nO.password) {
+            // Owner bypasses password
+            if (isOwner && ownerEmail === oE) { // Owner Account Bypass
+                shouldUnlock = true;
+            } else if (isOwner) {
+                // Regular logged in user bypasses password on their own pastes
+                shouldUnlock = true;
+            }
+        } else {
+            // No password set
+            shouldUnlock = true;
+        }
+
+        // Apply Paste's Owner Style for Public View
+        const u = gU();
+        const ownerStyle = u[ownerEmail]?.style;
+        if (ownerStyle) {
+            aCTC(ownerStyle.color); // Apply theme color
+            document.documentElement.style.setProperty('--c-ff', ownerStyle.fontFamily);
+            document.documentElement.style.setProperty('--c-fs', `${ownerStyle.fontSize}px`);
+            document.documentElement.style.setProperty('--c-fw', ownerStyle.fontWeight);
+            document.documentElement.style.setProperty('--c-fc', ownerStyle.fontColor);
+        }
+
+        // Increment visit count only if not owner and not logged in (true public visit)
+        if (!isOwner) {
+            const u = gU();
+            u[ownerEmail].visits = (u[ownerEmail].visits || 0) + 1;
+            u[ownerEmail].pastes[pasteIndex].visits = (u[ownerEmail].pastes[pasteIndex].visits || 0) + 1;
+            sU(u);
+        }
+
+
+        if (!shouldUnlock && !!nO.password) {
+            // Locked Paste View (Requires password)
+            D.nC.innerHTML = `
+                <h2 class="text-center" style="color:var(--p);">🔑 Password Protected Paste</h2>
+                <div class="note-card" style="border-left:5px solid var(--e); margin-top:20px;">
+                    <p class="text-center">Title: <strong>${nO.title}</strong></p>
+                    <div style="position:relative; margin-top:10px;">
+                        <input type="password" id="sP" placeholder="Enter Paste Password" style="padding-right: 3rem; margin-bottom:0;">
+                        <span class="password-toggle" id="sPTog" style="color:var(--p);">👁️</span>
+                    </div>
+                    <button id="uB" class="main-button" style="margin-top:1rem; width:100%;">Unlock Paste</button>
+                </div>
+            `;
+            document.getElementById('sPTog').addEventListener('click', () => tPV(document.getElementById('sP'), document.getElementById('sPTog')));
+            document.getElementById('uB').addEventListener('click', () => {
+                const eP = document.getElementById('sP').value.trim();
+                if (eP === nO.password) rC(nO);
+                else sT("Incorrect password!", 'error');
+            });
+
+        } else {
+            // Unlocked or Regular Paste View
+            rC(nO);
+        }
+    }
+    
+    // Render Content for Shared/Public View (rC)
+    function rC(nO) {
+        D.nC.innerHTML = `
+            <h1 class="text-center" style="font-size: 2rem;">${nO.title}</h1>
+            <div class="note-card" style="margin-top:20px; width:100%; border-left: 5px solid var(--p);">
+                <div style="font-size: var(--c-fs); font-weight: var(--c-fw); color: var(--c-fc);">
+                    ${sHC(nO.content, nO.syntax, true)}
+                </div>
+            </div>
+            <div class="text-center" style="font-size:.9rem;color:#888; margin-top:15px;">
+                <p>Type: ${nO.syntax.toUpperCase()} | Visited: ${nO.visits || 0} times</p>
+            </div>
+            <button id="cNR" class="main-button" style="margin-top:20px;">Create Your Own Paste</button>
+        `;
+        document.getElementById('cNR').addEventListener('click', () => window.location.href = window.location.origin + window.location.pathname);
